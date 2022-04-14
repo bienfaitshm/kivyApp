@@ -1,0 +1,173 @@
+#elle inclut les differentes fenetres de l apllication
+WindowManager:
+    Login:
+    Photo:
+    Resultat:
+
+<Login>:
+    id:login
+    name:"login"
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5,"center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 23
+        orientation: 'vertical'
+        MDLabel:
+            id:welcome_label
+            text: "BIENVENU(E)"
+            font_size: 35
+            halign: 'center'
+            size_hint_y: None
+            padding_y: 15
+            height: self.texture_size[1]
+        MDTextFieldRound:
+            id:user
+            hint_text: "nom  d utilisateur"
+            icon_right: "account"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+        MDTextFieldRound:
+            id:password
+            hint_text: "mot de passe"
+            icon_right: "eye-off"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+        MDRoundFlatButton:
+            text: 'Connexion'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_release:
+                root.logger(app)
+        # MDRoundFlatButton:
+        #     text: 'Supprimer'
+        #     font_size: 12
+        #     pos_hint: {'center_x': 0.5}
+        #     on_press: app.clear()
+        # MDRoundFlatButton:
+        #     text: 'photo'
+        #     font_size: 12
+        #     pos_hint: {'center_x': 0.5, 'center_y':.2}
+        #     on_press: app.root.current="photo"
+
+        Widget:
+            size_hint_y: None
+            height: 20
+
+<Photo>:
+    id:photo
+    name:"photo"
+    MDCard:
+        canvas:
+            Color: 
+                rgba: app.theme_cls.primary_color
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5,"center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 20
+        orientation: 'vertical'
+        MDBoxLayout:
+            adaptive_height: True
+            orientation: 'vertical'  
+            MDLabel:
+                id:scan_label
+                text: "vous pouvez scanner ou saisir le numéro de la plaque"
+                font_size: 15
+                halign: 'center'
+                size_hint_y: None
+                padding_y: 35
+                height: self.texture_size[1]
+        MDBoxLayout:
+            adaptive_height: True
+            md_bg_color: app.theme_cls.primary_color
+            orientation: 'horizontal'
+            radius: ('15 px') 
+            MDRoundFlatButton:
+                id: image
+                font_size: 5
+                pos_hint: {"center_x": 0.5}
+                halign: "center"
+                margin: ('15dp')
+                on_release:app.ouverture_camera()
+                FitImage:
+                    size_hint_x: 0.9
+                    source: 'camera.jfif'
+                    halign: "center"
+                    border_radius: 25
+            MDLabel:
+                id:camera_label
+                text: 'Scanner'
+                icon_right: "camera" 
+                font_size: 15
+                halign: 'center'
+                size_hint_y: None
+                padding_y: 15
+                height: self.texture_size[1] 
+        MDTextFieldRound:
+            id:input_input_matricule
+            hint_text: "numéro d immatriculation"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+
+        MDRoundFlatButton:
+            text: 'ok'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_release: root.open_dialogue()
+        MDRoundFlatButton:
+            text: 'Supprimer'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_release: root.clear()
+
+        Widget:
+            size_hint_y: None
+            height: 10
+
+
+<Resultat>:
+    id:resultat
+    name:"resultat"
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5,"center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 23
+        orientation: 'vertical'
+        MDLabel:
+            id:resultat
+            text: "le résultat de la vérifivation est "
+            font_size: 35
+            halign: 'center'
+            size_hint_y: None
+            padding_y: 15
+            height: self.texture_size[1]
+        
+        MDLabel:
+            text: ''
+            font_size: 12
+            height:60
+            pos_hint: {'center_x': 0.5}
+            
+
+        MDRoundFlatButton:
+            text: 'okay'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: app.root.current= "photo"        
+        # Widget:
+        #     size_hint_y: None
+        #     height: 10
